@@ -53,18 +53,20 @@ export default function Clock () {
 
     return(
         <div className = "Clock" onClick = {!running ? getTime : stopTime}>
-            <div className = 'time hours' id = 'hours'>
-                {/* {time.hours} */}
-                <div className = 'hands' id = 'hourHand'></div>
-            </div>
-            <div className = 'time minutes' id = 'minutes'>
-                {/* {time.minutes} */}
-                <div className = 'hands' id = 'minuteHand'></div>
-            </div>
-            <div className = 'time seconds' id = 'seconds'>
-                {/* {time.seconds} */}
-                <div className = 'hands' id = 'secondHand'></div>
-            </div>
+            {/* <div className = 'clockFace'> */}
+                <div className = 'time hours' id = 'hours'>
+                    {/* {time.hours} */}
+                    <div className = 'hands' id = 'hourHand'></div>
+                </div>
+                <div className = 'time minutes' id = 'minutes'>
+                    {/* {time.minutes} */}
+                    <div className = 'hands' id = 'minuteHand'></div>
+                </div>
+                <div className = 'time seconds' id = 'seconds'>
+                    {/* {time.seconds} */}
+                    <div className = 'hands' id = 'secondHand'></div>
+                </div>
+            {/* </div> */}
         </div>
     )
 }

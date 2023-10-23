@@ -1,18 +1,19 @@
 .Clock{
     display: flex;
-    flex-flow: row nowrap;
     position: relative;
-    width: 100dvw;
-    height: 100dvh;
+    width: 55.8%;
+    height: 99%;
     justify-content: center;
     align-items: center;
+    border: solid black;
+    border-radius: 50%;
 }
+
 .time{
     display: flex;
     position: absolute;
-    /* border: solid black; */
     width: 30%;
-    height: 50%;
+    height: 95%;
     font-size: 10rem;
     justify-content: center;
     align-items: flex;
