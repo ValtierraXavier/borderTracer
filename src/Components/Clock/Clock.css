@@ -1,0 +1,50 @@
+.Clock{
+    display: flex;
+    flex-flow: row nowrap;
+    position: relative;
+    width: 100dvw;
+    height: 100dvh;
+    justify-content: center;
+    align-items: center;
+}
+.time{
+    display: flex;
+    position: absolute;
+    /* border: solid black; */
+    width: 30%;
+    height: 50%;
+    font-size: 10rem;
+    justify-content: center;
+    align-items: flex;
+}
+
+#hours{
+    z-index: 100;
+    
+}
+
+#minutes{
+    z-index: 200;
+}
+
+#seconds{
+    z-index: 300;
+}
+
+.hands{
+    display: block;
+    position: relative;
+    background-color: black;
+    height: 50%;
+    width: 5%;
+}
+
+#hourHand{
+    height: 25%;
+    top: 25%;
+}
+#minuteHand{}
+#secondHand{
+    background-color: lightcoral;
+    width: 2%;
+}

@@ -1,26 +1,14 @@
 .App{
     display: flex;
     position: absolute;
-    flex-flow: column nowrap;
-    justify-content: center;
+    flex-flow: row;
+    justify-content: space-around;
     align-items: center;
-    width: 100dvw;
     height: 100dvh;
 }
 
-#bigOne{
-    position: relative;
+.that{
+    width: 10dvw;
+    height: 20dvh;
     border: solid black;
-    box-sizing: border-box;
-    width: 100px;
-    height: 100px;
-}
-#smallOne{
-    position: absolute;
-    background-color: black;
-    box-sizing: border-box;
-    transition: .2s ease-in-out;
-    width:20px;
-    height: 20px;
-    transition: .2s ease-in-out;
 }
