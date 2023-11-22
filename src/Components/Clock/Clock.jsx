@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import './Clock.css'
 
 export default function Clock () {
-
+    const [reset, setReset] = useState()
     const [time, setTime] = useState({
         hours: 0,
         minutes: 0,
@@ -24,27 +24,32 @@ export default function Clock () {
     }
 
     const whatsTheTime = () => {
-        const secondsDiv = document.getElementById('seconds')
-        const minutesDiv = document.getElementById('minutes')
-        const hoursDiv = document.getElementById('hours')
+        const secondsDiv = document?.getElementById('seconds')
+        const secondsDiv2 = document?.getElementById('secondsTwo')
+        const minutesDiv = document?.getElementById('minutes')
+        const minutesDiv2 = document?.getElementById('minutesTwo')
+        const hoursDiv = document?.getElementById('hours')
+        const hoursDiv2 = document?.getElementById('hoursTwo')
         const date = new Date()
-        const hours = date.getHours()
-        const minutes = date.getMinutes()
-        const seconds = date.getSeconds()
-        const secondsDeg = seconds * 6
-        secondsDiv.style.rotate = `${secondsDeg}deg`
-        const minutesDeg = minutes * 6
+        let hours = date.getHours()
+        let minutes = date.getMinutes()
+        let seconds = date.getSeconds()
+        
+        
+        const secondsDeg = ((seconds * 6) * (Math.PI)/180)
+        secondsDiv.style.rotate = `${secondsDeg}rad`
+        const minutesDeg = minutes === 59 ? -1 * 6 : minutes * 6
         minutesDiv.style.rotate = `${minutesDeg}deg`
-        const hoursDeg = hours * 30
-        hoursDiv.style.rotate = `${hoursDeg}deg`
-
-        const currentTime = {
+        // const hoursDeg = hours * 30
+        // hoursDiv.style.rotate = `${hoursDeg}deg`
+        
+        setTime(prev => prev = {
             ...time,
-            hours: hours === 0 ? 12 : hours > 12 ? (hours - 12) : hours,
+            hours: hours,
             minutes: minutes,
             seconds: seconds
-        }
-        setTime(prev => prev = currentTime)
+        })
+            
     }
 
 
@@ -53,20 +58,37 @@ export default function Clock () {
 
     return(
         <div className = "Clock" onClick = {!running ? getTime : stopTime}>
-            {/* <div className = 'clockFace'> */}
-                <div className = 'time hours' id = 'hours'>
+
                     {/* {time.hours} */}
-                    <div className = 'hands' id = 'hourHand'></div>
-                </div>
-                <div className = 'time minutes' id = 'minutes'>
+                    {time.hours !== 12 ?
+                        <div className = 'time hours' id = 'hours'>
+                            <div className = 'hands' id = 'hourHand'></div>
+                        </div>
+                        :
+                        <div className = 'time hours' id = 'hoursTwo'>
+                            <div className = 'hands' id = 'hourHand'></div>
+                        </div>
+                    }
                     {/* {time.minutes} */}
-                    <div className = 'hands' id = 'minuteHand'></div>
-                </div>
-                <div className = 'time seconds' id = 'seconds'>
+                    {time.minutes !== 59 ?                        
+                        <div className = 'time minutes' id = 'minutes'>
+                            <div className = 'hands' id = 'minuteHand'></div>
+                        </div>
+                        :
+                        <div className = 'time minutes' id = 'minutesTwo'>
+                            <div className = 'hands' id = 'minuteHand'></div>
+                        </div>
+                    }
                     {/* {time.seconds} */}
-                    <div className = 'hands' id = 'secondHand'></div>
-                </div>
-            {/* </div> */}
-        </div>
+                    {time.seconds !== 59 ?                        
+                        <div className = 'time seconds' id = 'seconds'>
+                            <div className = 'hands' id = 'secondHand'></div>
+                        </div>
+                        :
+                        <div className = 'time seconds' id = 'secondsTwo'>
+                            <div className = 'hands' id = 'secondHand'></div>
+                        </div> 
+                    }
+            </div>
     )
 }

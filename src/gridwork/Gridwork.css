@@ -1,0 +1,28 @@
+.Gridwork{
+    display: flex;
+    flex-flow: column;
+    position: absolute;
+}
+
+.Grid{
+    /* border: solid black 1px; */
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    position: relative;
+    height: 11px;
+    box-sizing: border-box;
+}
+.column{
+    position: relative;
+    width:10px;
+    height: 10px;
+    border: solid black 1px;
+    background-color: white;
+    align-items: center;
+    box-sizing: border-box;
+}
