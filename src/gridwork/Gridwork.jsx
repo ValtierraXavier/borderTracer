@@ -3,8 +3,8 @@ import './Gridwork.css'
 
 export default function Gridwork () {
     const [appState, setAppState] = useState({
-        yAmount: 0,
-        xAmount: 0,
+        yAmount: 2,
+        xAmount: 2,
         yArray: [],
         xArray:[],
         currentPosition:{
@@ -46,31 +46,59 @@ export default function Gridwork () {
         }else{
             e.target.style.backgroundColor = 'black'
         }
-        console.log(e.target.style.backgroundColor)
     }
 
+    const getTilePos = (e) => {
+        const xpos = {
+            ...appState,
+            currentPosition:{
+                x: e.target?.dataset.x,
+                y: e.target?.dataset.y
+            }
+        }
+        setAppState(prev => prev = xpos)
+    }
+    document?.addEventListener('keydown',(e)=>{  
+        const col = document.getElementById('col')
+        const row = document.getElementById('row')
+        
+        if(e.key === 'ArrowLeft'){
+            row.focus()
+        }else if(e.key === 'ArrowRight'){
+            col.focus()
+        }else if(e.key === 'Enter'){
+            highLight()
+        }
+
+    })
+
+    const highLight = () => {
+    }
+ 
     useEffect(()=>{
+    //  document?.getElementById('col').focus()
         setArrays()
     },[appState.xAmount, appState.yAmount])
-
+    
+    
 
     return(
         <div className='Gridwork'>
             <form>                
                 <label htmlFor='xAmount'>Columns</label>
-                <input name='xAmount' type='number' onChange={setAxis} value={appState.xAmount}></input>            
+                <input name='xAmount' type='number' min = '0' onChange={setAxis} value={appState.xAmount} id = 'row' ></input>            
                 <label htmlFor='yAmount'>Rows</label>
-                <input name='yAmount' type='number' onChange={setAxis} value={appState.yAmount}></input>            
+                <input name='yAmount' type='number'min = '0' onChange={setAxis} value={appState.yAmount} id = 'col' ></input>            
             </form>
             <div className='Grid'>
                 {
-                    appState?.yArray?.map((element, i1)=>{
+                    appState?.yArray?.map((element1, i1) => {
                         return(
-                            <div className="row" key = {i1} y = {i1}>
+                            <div className="row" key = {i1} data-y = {i1} >
                                 {
-                                    appState?.xArray?.map((element, i2)=>{
+                                    appState?.xArray?.map((element2, i2) => {
                                         return(
-                                            <div className="column"  key = {i2}x = {i2} onClick = {toggleIt}></div>
+                                            <div className="column"  key = {i2} data-y = {element1} data-x = {element2} onClick = {toggleIt} onMouseOver={getTilePos}></div>
                                         )
                                     })
                                 }
@@ -79,6 +107,7 @@ export default function Gridwork () {
                     })
                 }
             </div>
+            <div className='Pos'>{`x: ${appState?.currentPosition?.x} y: ${appState?.currentPosition?.y}`}</div>
         </div>
     )
 }
